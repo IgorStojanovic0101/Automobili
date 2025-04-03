@@ -1,0 +1,31 @@
+<table mat-table [dataSource]="store.items()" class="mat-elevation-z8">
+
+  <!-- ID Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> ID </th>
+    <td mat-cell *matCellDef="let auto"> {{ auto.id }} </td>
+  </ng-container>
+
+  <!-- Godina Proizvodnje Column -->
+  <ng-container matColumnDef="godinaProizvodnje">
+    <th mat-header-cell *matHeaderCellDef> Godina </th>
+    <td mat-cell *matCellDef="let auto"> {{ auto.godinaProizvodnje }} </td>
+  </ng-container>
+
+  <!-- Tip Goriva Column -->
+  <ng-container matColumnDef="tipGoriva">
+    <th mat-header-cell *matHeaderCellDef> Tip Goriva </th>
+    <td mat-cell *matCellDef="let auto"> {{ auto.tipGoriva }} </td>
+  </ng-container>
+
+  <!-- Naziv Automobila Column -->
+  <ng-container matColumnDef="nazivAutomobila">
+    <th mat-header-cell *matHeaderCellDef> Naziv Automobila </th>
+    <td mat-cell *matCellDef="let auto"> {{ auto.nazivAutomobila }} </td>
+  </ng-container>
+
+  <!-- Header and Row Definitions -->
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>

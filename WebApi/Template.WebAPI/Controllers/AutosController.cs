@@ -6,6 +6,7 @@ using Template.Application.Abstraction;
 using Template.Application.DTOs.User;
 using Template.Application.Results;
 using Template.Application.Services;
+using Template.Domain.DataModels;
 
 namespace Template.WebAPI.Controllers
 {
@@ -17,34 +18,47 @@ namespace Template.WebAPI.Controllers
 
         [HttpGet]
 
-        public async Task<ActionResult<ServiceResponse<List<User_ResponseDTO>>>> GetAutoUsers()
+        public async Task<ActionResult<List<Auto>>> GetAutos()
         {
 
+            var result = await _client.Service.GetAllCars();
 
-            ServiceResponse<List<User_ResponseDTO>> response = new();
 
-            response.Payload = await _client.Service.GetAllCars();
-
-            return Ok(response);
+            return Ok(result);
 
         }
 
 
         [HttpGet]
-        public async Task<ActionResult<Result<List<int>>>> GetAutoById(int id)
+        public async Task<ActionResult<List<int>>> GetAutoById(int id)
         {
-            var result = await _client.Service.GetUserById(id);
+            var result = await _client.Service.GetAutoById(id);
 
             if (!result.IsSuccess)
             {
                 return BadRequest(result.Error); 
             }
            
-            return Ok(result);
+            return Ok(result.Value);
 
         }
 
-      
-      
+        [HttpPut]
+        public async Task<ActionResult<List<int>>> UpdateAuto(Auto auto)
+        {
+            var result = await _client.Service.UpdateAuto(auto);
+
+            if (!result.IsSuccess)
+            {
+                return BadRequest(result.Error);
+            }
+
+            return Ok(result.Value);
+
+        }
+
+
+
+
     }
 }

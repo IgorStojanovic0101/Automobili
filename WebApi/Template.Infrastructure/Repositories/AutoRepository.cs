@@ -27,9 +27,10 @@ namespace Template.Infrastructure.Repositories
             //_dbConnection = dbConnection;
         }
 
-        public Task<List<Auto>> GetAllCars()
+        public async Task<List<Auto>> GetAllCars()
         {
-            return _dbContext.Autos.ToListAsync();
+            var data = await GetAllAsync(null);
+            return data.Items;
         }
 
 

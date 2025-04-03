@@ -17,7 +17,7 @@ namespace Template.UnitTests
         {
             var logger = new AccumulationLogger();
 
-            await templateClient.Command.DeleteImagesAsync("test", DateTime.Now);
+            await templateClient.Service.GetAllCars();
 
             var config = ManualConfig.Create(DefaultConfig.Instance)
                 .AddLogger(logger)

@@ -31,18 +31,26 @@ namespace Template.Application.Services
 
     
 
-        public async Task<List<User_ResponseDTO>> GetAllCars()
+        public async Task<List<Auto>> GetAllCars()
         {
             var entities = await _unitOfWork.AutoRepository.GetAllCars();
 
-            var dtos = new List<User_ResponseDTO>();
+            var list = new List<Auto>();
+
+           if(entities.Count == 0)
+            {
+                list.Add(Auto.Create(1, 2020, "Benzin", "BMW"));
+                list.Add(Auto.Create(2, 2020, "Benzin", "Audi"));
+
+                return list;
+            }
 
            
 
-            return dtos;
+            return entities;
         }
 
-        public async Task<Result<Auto>> GetUserById(int Id)
+        public async Task<Result<Auto>> GetAutoById(int Id)
         {
             var entity = await _unitOfWork.AutoRepository.GetUserById(Id);
 
@@ -54,6 +62,14 @@ namespace Template.Application.Services
         }
 
 
-       
+        public async Task<Result<Auto>> UpdateAuto(Auto auto)
+        {
+            var entity = await _unitOfWork.AutoRepository.UpdateAsync(auto);
+
+         
+            return Result<Auto>.Success(entity);
+        }
+
+
     }
 }

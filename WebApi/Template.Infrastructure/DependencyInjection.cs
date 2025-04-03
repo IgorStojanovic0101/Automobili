@@ -23,8 +23,7 @@ namespace Template.Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
 
-            services.AddDbContext<ApplicationDbContext1>(options =>
-                options.UseInMemoryDatabase("MemoryDb"));           
+            services.AddDbContext<ApplicationDbContext1>();           
            
 
 
@@ -35,12 +34,6 @@ namespace Template.Infrastructure
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             return services;
         }
-        public static IServiceCollection MigrationsContext(this IServiceCollection services, IConfiguration configuration)
-        {
-
-            services.AddDbContext<ApplicationDbContext1>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")!));
-
-            return services;
-        }
+       
     }
 }
