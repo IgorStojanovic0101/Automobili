@@ -1,0 +1,9 @@
+
+Database first command update
+
+PM> Scaffold-DbContext 'Name=ConnectionStrings:DefaultConnection' Microsoft.EntityFrameworkCore.SqlServer 
+-OutputDir "..\Template.Domain\Entities" -Namespace "Template.Domain.Entities" 
+-ContextDir "..\Template.DatabaseAccess\EF"-ContextNamespace "Template.DataAccess.EF"  
+-Context ApplicationDbContext -Force
+
+
