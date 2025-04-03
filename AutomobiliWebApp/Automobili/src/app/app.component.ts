@@ -9,6 +9,9 @@ import { Auto } from './shared/viewModels/auto';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+UpdateAuto() {
+throw new Error('Method not implemented.');
+}
   title = 'Automobili';
 
   store = inject(AutoStore);
@@ -18,6 +21,13 @@ export class AppComponent {
   constructor() { } // Inject your store service
 
   ngOnInit() {
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+    this.store.items().filter(auto => 
+      auto.NazivAutomobila.toLowerCase().includes(filterValue)
+    );
   }
 
 }

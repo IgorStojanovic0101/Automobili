@@ -1,3 +1,8 @@
+<div class="controls">
+  <input matInput (keyup)="applyFilter($event)" placeholder="Filter by name">
+  <button mat-raised-button color="primary" (click)="UpdateAuto()">Add Car</button>
+</div>
+
 <table mat-table [dataSource]="store.items()" class="mat-elevation-z8">
 
   <!-- ID Column -->
